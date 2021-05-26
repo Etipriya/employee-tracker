@@ -1,6 +1,7 @@
 //Dependencies
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const db = require()
 const consoleTable = require("console.table");
 
 //Declare the port and establish server
@@ -22,10 +23,32 @@ connection.connect(error => {
 
 //Added the init function
 async function init() {
- const answers = await inquirer.prompt({
+  console.log("Welcome to the employee tracker!\n");
+
+  //Declaring a variable with options
+  const answers = await inquirer.prompt({
    type:"list",
    name:"options",
    message:"What would you like to do?",
-   choices:["Add department",]
+   choices:[
+    "View All Employees",
+    "View All Departments",
+    "View All Roles",
+    "View All Employees By Department",
+    "View All Employees By Manager",
+    "Add Employee",
+    "Add Department",
+    "Add Role",
+    "Remove Employee",
+    "Remove Department",
+    "Remove Role",
+    "Update Employee",
+    "Update Employee Role",
+    "Update Employee Manager",
+    "View Total Budget By Department",
+    "Exit",
+  ]
  })
+
+ const reply = answers.init
 }

@@ -1,6 +1,5 @@
 //Dependencies
 const mysql = require("mysql");
-const express = require("express");
 const inquirer = require("inquirer");
 const consoleTable = require("console.table");
 

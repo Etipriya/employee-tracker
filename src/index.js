@@ -6,14 +6,26 @@ const consoleTable = require("console.table");
 //Declare the port and establish server
 const connection = mysql.createConnection({
   host: "localhost",
-  PORT = 3000,
+  PORT = 3306,
   user: "root",
-  password: "root",
+  password: "password",
   database: "company_db"
 });
 
-//Listener
-const app = express();
-app.listen(PORT, () => {
-  console.log(`Navigate to localhost: ${PORT}`);
-});
+//Creating connection 
+connection.connect(error => {
+  if(error){
+    console.log(error);
+  }
+  init();
+})
+
+//Added the init function
+async function init() {
+ const answers = await inquirer.prompt({
+   type:"list",
+   name:"options",
+   message:"What would you like to do?",
+   choices:["Add department",]
+ })
+}

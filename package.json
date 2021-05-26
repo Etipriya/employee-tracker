@@ -1,0 +1,23 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "## Screenshots",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Etipriya/employee-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Etipriya/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/Etipriya/employee-tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

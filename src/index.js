@@ -160,7 +160,27 @@ async function init() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "What is the department this role belongs to?",
-      name: "department",
+      name: "viewAllDepartments",
+    });
+    const newDepartment = answers.viewDepartment;
+  }
+
+  //Declaring Remove department
+  async function removeDepartment() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Remove Department",
+      name: "removeDepartment",
+    });
+    const newDepartment = answers.removeDepartment;
+  }
+
+  //Update an employee
+  async function updateDepartment() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Add Department",
+      name: "addDepartment",
     });
     const newDepartment = answers.department;
   }

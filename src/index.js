@@ -125,7 +125,7 @@ async function init() {
     } else {
     }
   }
-  //Declaring add department function
+  //Declaring addDepartment function
   async function addDepartment() {
     const answers = await inquirer.prompt({
       type: "input",
@@ -135,7 +135,7 @@ async function init() {
     const newDepartment = answers.department;
   }
 
-  //Declaring add employee function
+  //Declaring addEmployee function
   async function addEmployee() {
     const answers = await inquirer.prompt({
       type: "input",
@@ -145,7 +145,7 @@ async function init() {
     const newEmployee = answer.employee;
   }
 
-  //Declaring add role function
+  //Declaring addRole function
   async function addRole() {
     const answers = await inquirer.prompt({
       type: "input",
@@ -153,6 +153,56 @@ async function init() {
       name: "role",
     });
     const newRole = answer.Role;
+  }
+
+  //Declaring View Department
+  async function viewDepartment() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "What is the department this role belongs to?",
+      name: "department",
+    });
+    const newDepartment = answers.department;
+  }
+
+  //Declaring View employee
+  async function viewEmployee() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "View All Employees By Role",
+      name: "employee",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring Remove an employee
+  async function removeEmployee() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Remove an Employee",
+      name: "employee",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring update an employee
+  async function updateEmployee() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Update an Employee",
+      name: "employee",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring update an employee by role
+  async function updateEmployeeByRole() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Update an Employee By Role",
+      name: "employee",
+    });
+    const newEmployee = answer.employee;
   }
 }
 init();

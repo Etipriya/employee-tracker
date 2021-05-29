@@ -3,41 +3,17 @@ const inquirer = require("inquirer");
 const DB = require("../src/db/DB");
 const consoleTable = require("console.table");
 
-// //Creating connection
-// connection.connect(error => {
-//   if (error) {
-//     console.log(error);
-//   }
-//   init();
-// });
-
 //Added the init function
 async function init() {
-  console.log("Welcome to the employee tracker!\n");
+  console.log("Employee Tracker!\n");
 
   //Declaring a variable with options
   const db = new DB("company_db");
-  const question = await inquirer.prompt({
-    type: "list",
+  const answers = await inquirer.prompt({
     name: "options",
+    type: "list",
     message: "What would you like to do?",
     choices: [
-      // "View All Employees",
-      // "View All Departments",
-      // "View All Roles",
-      // "View All Employees By Department",
-      // "View All Employees By Manager",
-      // "Add Employee",
-      // "Add Department",
-      // "Add Role",
-      // "Remove Employee",
-      // "Remove Department",
-      // "Remove Role",
-      // "Update Employee",
-      // "Update Employee Role",
-      // "Update Employee Manager",
-      // "View Total Budget By Department",
-      // "Exit",
       {
         short: "Employees",
         value: "viewAllEmployees",
@@ -114,23 +90,60 @@ async function init() {
     ],
   });
 
-  const answers = await inquirer.prompt(question);
   if (answers.options === "exit") {
-    inProgress = false;
+    // inProgress = false;
+    process.exit();
   } else {
-    if (answers.options === "View All Departments") {
+    if (answers.options === "viewAllDepartments") {
       const query = "SELECT * FROM department";
       const data = await db.query(query);
       console.table(data);
-    } else {
+      init();
+    } else if (answers.options === "addDepartment") {
+      const newDepartment = addDepartment();
+      const query = `INSERT INTO department (name) VALUES (${newDepartment})`;
+      const data = await db.query(query);
+      console.table(data);
     }
   }
+
   //Declaring addDepartment function
   async function addDepartment() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "What is the department this role belongs to?",
-      name: "department",
+      name: "addDepartment",
+    });
+    const newDepartment = answers.addDepartment;
+    return newDepartment;
+  }
+
+  //Declaring View Department
+  async function viewAllDepartment() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Which department this role belongs to?",
+      name: "View All Departments",
+    });
+    const newDepartment = answers.Department;
+  }
+
+  //Declaring Remove department
+  async function removeDepartment() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Remove Department",
+      name: "Remove Departments",
+    });
+    const newDepartment = answers.Department;
+  }
+
+  //Update an employee
+  async function updateDepartment() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Update Department",
+      name: "Update Department",
     });
     const newDepartment = answers.department;
   }
@@ -140,7 +153,77 @@ async function init() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "Added Employee in the list",
-      name: "employee",
+      name: "Add an Employee",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring function for viewAllEmployees
+  async function viewAllEmployees() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "View All Employees",
+      name: "viewAllEmployees",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring function for employeesByDepartment
+  async function viewAllEmployeesByDepartment() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "View All Employees by Department",
+      name: "View All Employees By Departments",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring function for employeesByRole
+  async function viewAllEmployeesByRole() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "View All Employees by Role",
+      name: "View All Employees By Role",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring function to removeEmployee
+  async function removeEmployee() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Remove an Employee from the list",
+      name: "Remove an Employee",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring function to update an employee
+  async function updateEmployee() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Update an Employee",
+      name: "Update an Employee",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring function to update an employee role
+  async function updateEmployeeRole() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Update an Employee Role",
+      name: "Update Employee Role",
+    });
+    const newEmployee = answer.employee;
+  }
+
+  //Declaring function to update employee Manager
+  async function updateEmployeeManager() {
+    const answers = await inquirer.prompt({
+      type: "input",
+      message: "Update the Employees Manager",
+      name: "Update Employee Manager",
     });
     const newEmployee = answer.employee;
   }
@@ -150,79 +233,39 @@ async function init() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "Added Role in the list",
-      name: "role",
+      name: "Add role",
     });
     const newRole = answer.Role;
   }
 
-  //Declaring View Department
-  async function viewDepartment() {
+  //Declaring viewRoles function
+  async function viewAllRoles() {
     const answers = await inquirer.prompt({
       type: "input",
-      message: "What is the department this role belongs to?",
-      name: "viewAllDepartments",
+      message: "View various roles in the list",
+      name: "View All Roles",
     });
-    const newDepartment = answers.viewDepartment;
+    const newRole = answer.Role;
   }
 
-  //Declaring Remove department
-  async function removeDepartment() {
+  //Declaring removeRoles function
+  async function removeRoles() {
     const answers = await inquirer.prompt({
       type: "input",
-      message: "Remove Department",
-      name: "removeDepartment",
+      message: "Remove a role from the list",
+      name: "Remove Roles",
     });
-    const newDepartment = answers.removeDepartment;
+    const newRole = answer.Role;
   }
 
-  //Update an employee
-  async function updateDepartment() {
+  //Declaring budget function
+  async function viewBudget() {
     const answers = await inquirer.prompt({
       type: "input",
-      message: "Add Department",
-      name: "addDepartment",
+      message: "View the budget",
+      name: "View Utilised Budget for a Department",
     });
-    const newDepartment = answers.department;
-  }
-
-  //Declaring View employee
-  async function viewEmployee() {
-    const answers = await inquirer.prompt({
-      type: "input",
-      message: "View All Employees By Role",
-      name: "employee",
-    });
-    const newEmployee = answer.employee;
-  }
-
-  //Declaring Remove an employee
-  async function removeEmployee() {
-    const answers = await inquirer.prompt({
-      type: "input",
-      message: "Remove an Employee",
-      name: "employee",
-    });
-    const newEmployee = answer.employee;
-  }
-
-  //Declaring update an employee
-  async function updateEmployee() {
-    const answers = await inquirer.prompt({
-      type: "input",
-      message: "Update an Employee",
-      name: "employee",
-    });
-    const newEmployee = answer.employee;
-  }
-
-  //Declaring update an employee by role
-  async function updateEmployeeByRole() {
-    const answers = await inquirer.prompt({
-      type: "input",
-      message: "Update an Employee By Role",
-      name: "employee",
-    });
-    const newEmployee = answer.employee;
+    const newRole = answer.viewBudget;
   }
 }
 init();

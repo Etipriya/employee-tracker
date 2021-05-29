@@ -15,19 +15,19 @@ async function init() {
     message: "What would you like to do?",
     choices: [
       {
-        short: "Employees",
-        value: "viewAllEmployees",
-        name: "View All Employees",
+        short: "Employee",
+        value: "viewAllEmployee",
+        name: "View All Employee",
       },
       {
-        short: "Employees By Department",
-        value: "viewAllEmployeesByDepartment",
-        name: "View All Employees By Department",
+        short: "Employee By Department",
+        value: "viewAllEmployeeByDepartment",
+        name: "View All Employee By Department",
       },
       {
-        short: "Employees By Role",
-        value: "viewAllEmployeesByRole",
-        name: "View All Employees By Role",
+        short: "Employee By Role",
+        value: "viewAllEmployeeByRole",
+        name: "View All Employee By Role",
       },
       {
         short: "Add Employee",
@@ -52,9 +52,9 @@ async function init() {
         name: "Update Employee Manager",
       },
       {
-        short: "Roles",
-        value: "viewAllRoles",
-        name: "View All Roles",
+        short: "Role",
+        value: "viewAllRole",
+        name: "View All Role",
       },
       {
         value: "addRole",
@@ -65,22 +65,22 @@ async function init() {
         name: "Remove Role",
       },
       {
-        short: "Departments",
-        value: "viewAllDepartments",
-        name: "View All Departments",
+        short: "Department",
+        value: "viewAllDepartment",
+        name: "View All Department",
       },
       {
         value: "addDepartment",
-        name: "Add Departments",
+        name: "Add Department",
       },
       {
         value: "removeDepartment",
-        name: "Remove Departments",
+        name: "Remove Department",
       },
       {
         short: "Budget",
         value: "viewBudget",
-        name: "View Utilised Budget for a Department",
+        name: "View Utilized Budget for a Department",
       },
       {
         short: "Exit",
@@ -93,25 +93,66 @@ async function init() {
   if (answers.options === "exit") {
     // inProgress = false;
     process.exit();
-  } else {
-    if (answers.options === "viewAllDepartments") {
-      const query = "SELECT * FROM department";
-      const data = await db.query(query);
-      console.table(data);
-      init();
-    } else if (answers.options === "addDepartment") {
-      const newDepartment = addDepartment();
-      const query = `INSERT INTO department (name) VALUES (${newDepartment})`;
-      const data = await db.query(query);
-      console.table(data);
-    }
+  } else if (answers.options === "viewAllDepartment") {
+    const query = "SELECT * FROM department";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "addDepartment") {
+    const newDepartment = addDepartment();
+    const query = `INSERT INTO department (name) VALUES (${newDepartment})`;
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "removeDepartment") {
+    const newDepartment = removeDepartment();
+    const query = `DELETE FROM department (name) VALUES (${newDepartment})`;
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "addEmployee") {
+    const newEmployee = addEmployee();
+    const query = `INSERT INTO employee (name) VALUES (${newEmployee})`;
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "viewAllEmployees") {
+    const newEmployee = viewAllEmployees();
+    const query = "SELECT * FROM employee";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "viewAllEmployeeByDepartment") {
+    const newEmployee = viewAllEmployeeByDepartment();
+    const query = "VIEW department_id from department";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "viewAllEmployeeByRole") {
+    const newEmployee = viewAllEmployeeByRole();
+    const query = "SELECT role_id FROM employee";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "removeEmployee") {
+    const newEmployee = removeEmployee();
+    const query = "REMOVE first_name, last_name FROM employee";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "updateEmployee") {
+    const newEmployee = updateEmployee();
+    const query = "UPDATE first_name, last_name IN employee";
+    const data = await db.query(query);
+    console.table(data);
+    init();
   }
 
   //Declaring addDepartment function
   async function addDepartment() {
     const answers = await inquirer.prompt({
       type: "input",
-      message: "What is the department this role belongs to?",
+      message: "Which department this role belongs to?",
       name: "addDepartment",
     });
     const newDepartment = answers.addDepartment;
@@ -119,13 +160,14 @@ async function init() {
   }
 
   //Declaring View Department
-  async function viewAllDepartment() {
+  async function viewAllDepartments() {
     const answers = await inquirer.prompt({
       type: "input",
-      message: "Which department this role belongs to?",
+      message: "Various department are:",
       name: "View All Departments",
     });
-    const newDepartment = answers.Department;
+    const newDepartment = answers.viewAllDepartments;
+    return newDepartment;
   }
 
   //Declaring Remove department
@@ -135,27 +177,19 @@ async function init() {
       message: "Remove Department",
       name: "Remove Departments",
     });
-    const newDepartment = answers.Department;
-  }
-
-  //Update an employee
-  async function updateDepartment() {
-    const answers = await inquirer.prompt({
-      type: "input",
-      message: "Update Department",
-      name: "Update Department",
-    });
-    const newDepartment = answers.department;
+    const newDepartment = answers.removeDepartment;
+    return newDepartment;
   }
 
   //Declaring addEmployee function
   async function addEmployee() {
     const answers = await inquirer.prompt({
       type: "input",
-      message: "Added Employee in the list",
+      message: "Add Employee in the list",
       name: "Add an Employee",
     });
-    const newEmployee = answer.employee;
+    const newEmployee = answer.addEmployee;
+    return newDepartment;
   }
 
   //Declaring function for viewAllEmployees

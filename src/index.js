@@ -90,6 +90,7 @@ async function init() {
     ],
   });
 
+  //Using if else commands
   if (answers.options === "exit") {
     // inProgress = false;
     process.exit();
@@ -196,14 +197,14 @@ async function init() {
   }
 
   //Declaring View Department
-  async function viewAllDepartments() {
+  async function viewAllDepartment() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "Various department are:",
-      name: "View All Departments",
+      name: "View All Department",
     });
-    const newDepartment = answers.viewAllDepartments;
-    return newDepartment;
+    const viewDepartment = answers.viewAllDepartment;
+    return viewDepartment;
   }
 
   //Declaring Remove department
@@ -211,10 +212,10 @@ async function init() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "Remove Department",
-      name: "Remove Departments",
+      name: "Remove Department",
     });
-    const newDepartment = answers.removeDepartment;
-    return newDepartment;
+    const removeDepartment = answers.removeDepartment;
+    return removeDepartment;
   }
 
   //Declaring addEmployee function
@@ -225,17 +226,18 @@ async function init() {
       name: "Add an Employee",
     });
     const newEmployee = answer.addEmployee;
-    return newDepartment;
+    return newEmployee;
   }
 
   //Declaring function for viewAllEmployees
-  async function viewAllEmployees() {
+  async function viewAllEmployee() {
     const answers = await inquirer.prompt({
       type: "input",
-      message: "View All Employees",
-      name: "viewAllEmployees",
+      message: "View All Employee",
+      name: "viewAllEmployee",
     });
-    const newEmployee = answer.employee;
+    const viewEmployee = answer.viewAllEmployee;
+    return newEmployee;
   }
 
   //Declaring function for employeesByDepartment
@@ -245,17 +247,20 @@ async function init() {
       message: "View All Employees by Department",
       name: "View All Employees By Departments",
     });
-    const newEmployee = answer.employee;
+    const newViewAllEmployeeByDepartment = answer.viewAllEmployeesByDepartment;
+    return newViewAllEmployeeByDepartment;
   }
 
   //Declaring function for employeesByRole
-  async function viewAllEmployeesByRole() {
+  async function viewAllEmployeeByRole() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "View All Employees by Role",
       name: "View All Employees By Role",
     });
-    const newEmployee = answer.employee;
+    const newViewAllEmployeeByRole = answer.viewAllEmployeeByRole;
+    return newViewAllEmployeeByDepartment;
+
   }
 
   //Declaring function to removeEmployee
@@ -265,7 +270,8 @@ async function init() {
       message: "Remove an Employee from the list",
       name: "Remove an Employee",
     });
-    const newEmployee = answer.employee;
+    const newRemoveEmployee = answer.removeEmployee;
+    return newRemoveEmployee;
   }
 
   //Declaring function to update an employee
@@ -275,7 +281,8 @@ async function init() {
       message: "Update an Employee",
       name: "Update an Employee",
     });
-    const newEmployee = answer.employee;
+    const newUpdateEmployee = answer.updateEmployee;
+    return newUpdateEmployee;
   }
 
   //Declaring function to update an employee role
@@ -285,7 +292,8 @@ async function init() {
       message: "Update an Employee Role",
       name: "Update Employee Role",
     });
-    const newEmployee = answer.employee;
+    const newUpdateEmployeeRole = answer.updateEmployeeRole;
+    return newUpdateEmployeeRole;
   }
 
   //Declaring function to update employee Manager
@@ -295,7 +303,8 @@ async function init() {
       message: "Update the Employees Manager",
       name: "Update Employee Manager",
     });
-    const newEmployee = answer.employee;
+    const newUpdateEmployeeManager = answer.updateEmployeeManager;
+    return newUpdateEmployeeManager;
   }
 
   //Declaring addRole function
@@ -305,17 +314,17 @@ async function init() {
       message: "Added Role in the list",
       name: "Add role",
     });
-    const newRole = answer.Role;
+    const newAddRole = answer.addRole;
   }
 
   //Declaring viewRoles function
-  async function viewAllRoles() {
+  async function viewAllRole() {
     const answers = await inquirer.prompt({
       type: "input",
       message: "View various roles in the list",
       name: "View All Roles",
     });
-    const newRole = answer.Role;
+    const newViewAllRole = answer.viewAllRole;
   }
 
   //Declaring removeRoles function
@@ -325,7 +334,7 @@ async function init() {
       message: "Remove a role from the list",
       name: "Remove Roles",
     });
-    const newRole = answer.Role;
+    const newRemoveRole = answer.removeRole;
   }
 
   //Declaring budget function
@@ -335,7 +344,7 @@ async function init() {
       message: "View the budget",
       name: "View Utilised Budget for a Department",
     });
-    const newRole = answer.viewBudget;
+    const newViewBudget = answer.viewBudget;
   }
 }
 init();

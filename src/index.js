@@ -146,6 +146,42 @@ async function init() {
     const data = await db.query(query);
     console.table(data);
     init();
+  } else if (answers.options === "updateEmployeeRole") {
+    const newEmployee = updateEmployeeRole();
+    const query = "UPDATE role_id IN employee";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "updateEmployeeManager") {
+    const newEmployee = updateEmployeeManager();
+    const query = "UPDATE manager_id IN employee";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "viewAllRole") {
+    const newRole = viewAllRole();
+    const query = "List of the role:";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "addRole") {
+    const newRole = addRole();
+    const query = "Add a new role in the list";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else if (answers.options === "removeRole") {
+    const newRemoveRole = removeRole();
+    const query = "Remove a role in the list";
+    const data = await db.query(query);
+    console.table(data);
+    init();
+  } else (answers.options === "viewBudget") {
+    const newBudget = viewBudget();
+    const query = "What is the new Budget?";
+    const data = await db.query(query);
+    console.table(data);
+    init();
   }
 
   //Declaring addDepartment function

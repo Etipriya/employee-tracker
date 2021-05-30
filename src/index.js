@@ -23,11 +23,6 @@ async function init() {
         },
         {
           short: "Employee",
-          value: "viewAllEmployeeByManager",
-          name: "View All Employee By Manager",
-        },
-        {
-          short: "Employee",
           value: "viewAllEmployeeByRole",
           name: "View All Employee By Role",
         },
@@ -88,12 +83,6 @@ async function init() {
     } else if (answers.options === "viewAllEmployee") {
       // const newEmployee = viewAllEmployees();
       const query = "SELECT first_name, last_name FROM employee;";
-      const data = await db.query(query);
-      console.table(data);
-      // init();
-    } else if (answers.options === "viewAllEmployeeByManager") {
-      const { manager_id } = await viewAllEmployeeByManager(db);
-      const query = `SELECT first_name, last_name FROM employee WHERE employee.manager_id = ${manager_id}`;
       const data = await db.query(query);
       console.table(data);
       // init();
@@ -172,30 +161,6 @@ async function init() {
       },
     ]);
     // const newEmployee = answer.addEmployee;
-    return answers;
-  }
-
-  //Declaring function for employeeByManager
-  async function viewAllEmployeeByManager(db) {
-    const generateChoices = employees => {
-      return employees.map(employee => {
-        return {
-          short: employee.id,
-          name: `${employee.first_name} ${employee.last_name}`,
-          value: employee.id,
-        };
-      });
-    };
-    const allEmployees = await db.selectAll("employee");
-    const managers = allEmployees.filter(each => {
-      return each.is_manager === 1;
-    });
-    const answers = await inquirer.prompt({
-      type: "list",
-      message: "Please select a manager",
-      name: "manager_id",
-      choices: generateChoices(managers),
-    });
     return answers;
   }
 

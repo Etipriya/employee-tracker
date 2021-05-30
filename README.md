@@ -55,3 +55,7 @@
 ## Link to github
 
 https://github.com/Etipriya/employee-tracker
+
+## Link to the screencastify video
+
+https://drive.google.com/file/d/1z8zjhVWF982ARHTyuZmPexau2MabVv8d/view?usp=sharing

@@ -176,28 +176,28 @@ async function init() {
   }
 
   //Declaring function for employeeByManager
-  // async function viewAllEmployeeByManager(db) {
-  //   const generateChoices = employees => {
-  //     return employees.map(employee => {
-  //       return {
-  //         short: employee.id,
-  //         name: `${employee.first_name} ${employee.last_name}`,
-  //         value: employee.id,
-  //       };
-  //     });
-  //   };
-  //   const allEmployees = await db.selectAll("employee");
-  //   const managers = allEmployees.filter(each => {
-  //     return each.is_manager === 1;
-  //   });
-  //   const answers = await inquirer.prompt({
-  //     type: "list",
-  //     message: "Please select a manager",
-  //     name: "manager_id",
-  //     choices: generateChoices(managers),
-  //   });
-  //   return answers;
-  // }
+  async function viewAllEmployeeByManager(db) {
+    const generateChoices = employees => {
+      return employees.map(employee => {
+        return {
+          short: employee.id,
+          name: `${employee.first_name} ${employee.last_name}`,
+          value: employee.id,
+        };
+      });
+    };
+    const allEmployees = await db.selectAll("employee");
+    const managers = allEmployees.filter(each => {
+      return each.is_manager === 1;
+    });
+    const answers = await inquirer.prompt({
+      type: "list",
+      message: "Please select a manager",
+      name: "manager_id",
+      choices: generateChoices(managers),
+    });
+    return answers;
+  }
 
   //Declaring function for employeesByRole
   async function viewAllEmployeeByRole(db) {
@@ -222,7 +222,7 @@ async function init() {
   }
 
   //Declaring function to update an employee role
-  async function updateEmployeeRole() {
+  async function updateEmployeeRole(db) {
     const generateEmployeeChoices = employees => {
       return employees.map(employee => {
         return {
